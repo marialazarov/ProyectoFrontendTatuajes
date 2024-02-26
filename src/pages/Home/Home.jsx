@@ -4,7 +4,9 @@ import "./Home.css";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { bringAllArtists } from "../../services/apicalls";
 import { ArtistCard } from "../../components/ArtistCard/ArtistCard";
+import { Header
 
+} from "../../components/Header/Header";
 //VISTA login
 export const Home = () => {
     const [artists, setArtists] = useState([]);
@@ -38,7 +40,8 @@ export const Home = () => {
 
     return (
         <>
-            <h1>LOGIN</h1>
+        <img className="logo" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>
+            <h1 className="login">LOGIN</h1>
             <div className="midiv">
                 <CustomInput
                     type={"text"}

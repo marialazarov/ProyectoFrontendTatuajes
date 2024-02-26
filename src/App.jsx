@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer/Footer";
 import { Body } from "./pages/Body/Body";
 import { Header } from "./components/Header/Header";
 
+
 function App() {
   return (
     <>

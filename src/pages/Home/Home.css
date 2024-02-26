@@ -1,8 +1,12 @@
 body{
-    background-color: black;
+    background-color: white;
+    display: flex;
 }
 
-
+.logo{
+    margin: -7em;
+    height: auto;
+}
 
 .midiv{
     display: flex;
@@ -10,23 +14,27 @@ body{
     height: 50vh;
     width: 50vw;
     background-color: rgb(0, 0, 0)(255, 1, 1);
-    margin: auto;
+    margin-top: 5em;
+    margin:auto;
 }
 
 h1{
-color: aliceblue;
+color: rgb(6, 6, 7);
+}
+.login{
+    margin: 2em;
 }
 
 .apiCallButton{
     height: 5em;
     width :12em;
     margin: auto;
-    background-color: blueviolet;
+    background-color: rgb(255, 244, 244);
     border-radius: 0%;
 }
 h4{
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
+    color: rgb(254, 244, 244);
 }
 h6{
     font-family: Arial, Helvetica, sans-serif;
