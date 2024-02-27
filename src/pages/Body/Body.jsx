@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { Home } from "../Home/Home"
 import { Register } from "../Register/Register"
 import { Artist } from "../Artist/Artist"
+import { ArtistDetail } from "../ArtistDetail/ArtistDetail"
 
 
 export const Body = () => {
@@ -14,6 +15,7 @@ export const Body = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/artist' element={<Artist />}></Route>
+                <Route path='/artistdetail' element={<ArtistDetail />}></Route>
             </Routes>
 
 

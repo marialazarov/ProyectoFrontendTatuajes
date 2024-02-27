@@ -4,11 +4,14 @@ import "./Artist.css";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { bringAllArtists } from "../../services/apicalls";
 import { ArtistCard } from "../../components/ArtistCard/ArtistCard";
+import { useNavigate } from "react-router-dom";
 
 
 export const Artist = () => {
     const [artists, setArtists] = useState([]);
     const [inputValue, setInputValue] = useState('')
+
+    const navigate = useNavigate() // Le pasas como parametro a donde quieres ir
 
     const inputHandler = (e) => {
         setInputValue(e.target.value)
@@ -21,6 +24,8 @@ export const Artist = () => {
             if (inputValue === artist.name) {
                 artistaSeleccionado = artist
                 console.log(artist);
+                localStorage.setItem('details' , JSON.stringify(artist))
+                navigate('/artistdetail')
             }
         });
         
@@ -36,14 +41,14 @@ export const Artist = () => {
         console.log(artists)
     }, [artists]);
 
-    useEffect(() => {
-      artists.forEach((artist)=> {
-        if (inputValue === artist.name) {
-            console.log(inputValue)
-        }
-      })
+    //useEffect(() => {
+    //  artists.forEach((artist)=> {
+    //    if (inputValue === artist.name) {
+    //        console.log(inputValue)
+       // }
+    //  })
 
-    }, [inputValue]);
+   // }, [inputValue]);
 
     return (
         <>
