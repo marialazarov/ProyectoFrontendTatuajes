@@ -5,27 +5,25 @@ import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { bringAllArtists } from "../../services/apicalls";
 import { ArtistCard } from "../../components/ArtistCard/ArtistCard";
 
-//VISTA login
+
 export const Artist = () => {
     const [artists, setArtists] = useState([]);
-    const [userData, setUserData] = useState({
-        name: "", //esto seria email en mi backend
-        email: "", //esto seria password en mi backend
-        password: "",
-    });
+    const [inputValue, setInputValue] = useState('')
 
-    const inputHandler = (event) => {
-        setUserData((prevState) => ({
-            ...prevState, //haz una copia del estado actual
-            [event.target.name]: event.target.value, //busca una copia que se llame asi y pon el valor de quien haya disparado el evento
-        }));
-    };
-
-    //Botón para ver Artistas **implementar en Admin y en Home para ver Artistas
+    const inputHandler = (e) => {
+        setInputValue(e.target.value)
+    }
+   
+   
     const buttonHandler = () => {
-        bringAllArtists().then((artists) => {
-            setArtists(artists);
+        let artistaSeleccionado = {} 
+        artists.forEach((artist) => {
+            if (inputValue === artist.name) {
+                artistaSeleccionado = artist
+                console.log(artist);
+            }
         });
+        
     };
 
     //para traer los artistas sin tener que pulsar un botón
@@ -39,11 +37,24 @@ export const Artist = () => {
     }, [artists]);
 
     useEffect(() => {
-        //console.log(userData, "user data");
-    }, [userData]);
+      artists.forEach((artist)=> {
+        if (inputValue === artist.name) {
+            console.log(inputValue)
+        }
+      })
+
+    }, [inputValue]);
 
     return (
         <>
+        <div className="miDiv">
+            <CustomInput
+                type={"text"}
+                name={"name"}
+                handler={inputHandler}
+            ></CustomInput>
+            <button onClick={buttonHandler}>BUSCAR</button>
+            </div>
             <img className="logo" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>
 
 

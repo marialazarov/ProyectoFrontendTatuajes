@@ -40,8 +40,8 @@ export const Home = () => {
 
     return (
         <>
-        <img className="logo" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>
-            <h1 className="login">LOGIN</h1>
+        <img className="logohome" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>
+            <h1 className="welcome">WELCOME</h1>
             <div className="midiv">
                 <CustomInput
                     type={"text"}
@@ -58,8 +58,9 @@ export const Home = () => {
                     name={"password"}
                     handler={inputHandler}
                 ></CustomInput>
+
                 <div className="apiCallButton" onClick={buttonHandler}>
-                    <h4>TATUADORES</h4>
+                    <h4>TATUADORES</h4> 
                 </div>
 
 
