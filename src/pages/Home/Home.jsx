@@ -7,6 +7,8 @@ import { ArtistCard } from "../../components/ArtistCard/ArtistCard";
 import { Header
 
 } from "../../components/Header/Header";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 //VISTA login
 export const Home = () => {
     const [artists, setArtists] = useState([]);
@@ -22,11 +24,19 @@ export const Home = () => {
         }));
     };
 
-    //Botón para ver Artistas **implementar en Admin y en Home para ver Artistas
+    const navigate = useNavigate()
+
+ 
     const buttonHandler = () => {
+    
         userLogin(userData).then((token) => {
             localStorage.setItem('token', token);
-            console.log('Login exitoso')
+            const decodedtoken = jwtDecode(token)
+            localStorage.setItem('decoded', JSON.stringify(decodedtoken));
+    
+            navigate('/profile')
+
+            
         });
     };
 
