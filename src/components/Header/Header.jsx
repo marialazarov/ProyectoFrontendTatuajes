@@ -4,13 +4,17 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const token = localStorage.getItem("token");
-  
+  const navigate = useNavigate()
   const logMeOut = () =>{
     localStorage.setItem('token', '')
     localStorage.setItem('decoded', JSON.stringify({}))
+    setTimeout(()=>{
+        navigate('/home')
+    },1000)
   } // para borrar los tokens y los datos del usuario una vez hace click en logout
 
   return (
