@@ -17,25 +17,6 @@ export const Artist = () => {
         setInputValue(e.target.value)
     }
    
-   
-    const buttonHandler = () => {
-        let artistaSeleccionado = {} 
-        artists.forEach((artist) => {
-            if (inputValue === artist.name) {
-                artistaSeleccionado = artist
-                console.log(artist);
-                localStorage.setItem('details' , JSON.stringify(artist))
-                navigate('/artistdetail')
-            }
-        });
-        
-    };
-
-    const viewArtistDetail =(id) => {
-        localStorage.setItem('userId' , id)
-        console.log('soy id en viewUserDetail')
-    }
-
 
 
 
@@ -67,7 +48,7 @@ export const Artist = () => {
                 name={"name"}
                 handler={inputHandler}
             ></CustomInput>
-            <button onClick={viewArtistDetail}>VIEW</button>
+        
             </div>
             <img className="logo" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>
 

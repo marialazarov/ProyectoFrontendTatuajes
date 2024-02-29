@@ -3,27 +3,20 @@ import { useEffect, useState } from "react";
 import { bringAllUsers, deleteUser } from "../../services/apicalls";
 import './Admin.css'
 
-
-
-
-
-
 export const Admin = () => {
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState(""); // Estado para almacenar el término de búsqueda
     const decoded = JSON.parse(localStorage.getItem("decoded"));
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
     const deleteUserHandler = async (id) => {
-        // Preguntar al usuario si está seguro de eliminar el usuario
         const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
         if (confirmDelete) {
             try {
-                await deleteUser(token, id); // Llama a la función para eliminar el usuario
-                // Después de eliminar, actualiza la lista de usuarios
+                await deleteUser(token, id);
                 bringAllUsers().then((res) => {
                     setUsers(res);
-                    console.log(res);
                 });
             } catch (error) {
                 console.error("Error al eliminar el usuario:", error);
@@ -37,33 +30,43 @@ export const Admin = () => {
         } else {
             bringAllUsers().then((res) => {
                 setUsers(res);
-                console.log(res);
             });
         }
     }, []);
 
+    // Función para filtrar los usuarios según el término de búsqueda
+    const filteredUsers = users.filter((user) =>
+        user.username.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
-          <div className="adminDesign">
-    <div className="userList">
-        {users.length > 0 ? (
-            users.map((user) => (
-                <div className="userRow" key={user.id}>
-                    <div>
-                        <h6>Id: {user.id}</h6>
-                        <h6>Username: {user.username}</h6>
-                        <h6>Email: {user.email}</h6>
-                    </div>
-                    {/* Agregar botón para eliminar usuario */}
-                    <div className="deleteButton">
-                        <button onClick={() => deleteUserHandler(user.id)}>Eliminar</button>
-                    </div>
+            <div className="adminDesign">
+                <input
+                    type="text"
+                    placeholder="Buscar usuario..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)} // Actualizar el estado del término de búsqueda al escribir
+                />
+                <div className="userList">
+                    {filteredUsers.length > 0 ? (
+                        filteredUsers.map((user) => (
+                            <div className="userRow" key={user.id}>
+                                <div>
+                                    <h6>Id: {user.id}</h6>
+                                    <h6>Username: {user.username}</h6>
+                                    <h6>Email: {user.email}</h6>
+                                </div>
+                                <div className="deleteButton">
+                                    <button onClick={() => deleteUserHandler(user.id)}>Eliminar</button>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No se encontraron usuarios</p>
+                    )}
                 </div>
-            ))
-        ) : null}
-    </div>
-</div>
-
+            </div>
         </>
     );
 };

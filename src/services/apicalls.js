@@ -2,6 +2,7 @@ import axios from "axios";
 const API_URL= 'http://localhost:3000/api/users'
 const API_URL2 = 'http://localhost:3000/api/appointments'
 
+
 export const bringAllArtists = async () => {
     const res = await axios.get("http://localhost:3000/api/artist") 
     return res.data
@@ -94,6 +95,17 @@ export const bringUserById = async(id)=>{
     return  res.data.user
     //bringUsersAppointments
 }
+
+export const bringAppointmentById = async (userId) => {
+    try {
+        const res = await axios.get(`${API_URL2}/${userId}`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+
 //login 
  export const userLogin = async (userData) => {
 
