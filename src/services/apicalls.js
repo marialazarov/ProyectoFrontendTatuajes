@@ -41,15 +41,24 @@ export const createUsers = async (userData) => {
     }
   };
 
+  export const createAppointment = async (userData) => {
+    try {
+      const res = await axios.post('http://localhost:3000/api/appointments',userData);
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
 export const bringUserById = async(id)=>{
     const res = await axios.get(`${API_URL}/${id}`)
     return  res.data.user
     //bringUsersAppointments
 }
 //login 
- export const userLogin = async (credentials) => {
+ export const userLogin = async (userData) => {
 
-      const res =  await axios.post('http://localhost:3000/auth/login' , credentials)
+      const res =  await axios.post('http://localhost:3000/auth/login' , userData)
       const token = res.data.token
       return token
 }

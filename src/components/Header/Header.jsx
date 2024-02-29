@@ -47,7 +47,9 @@ export const Header = () => {
                 </>
               ): (
                 <>
+
                 <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item href="appointments">Create Appointment</NavDropdown.Item>
                 <NavDropdown.Item href="">My Appointments</NavDropdown.Item>
                 <NavDropdown.Item href="home" onClick={() => logMeOut()}>Log Out</NavDropdown.Item>
                 
