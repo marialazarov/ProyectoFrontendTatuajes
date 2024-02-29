@@ -40,7 +40,7 @@ export const Header = () => {
                 <>
                 <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
                 <NavDropdown.Item href="admin">Users</NavDropdown.Item>
-                <NavDropdown.Item href="">All the Appointments</NavDropdown.Item>
+                <NavDropdown.Item href="everyappointment">All the Appointments</NavDropdown.Item>
                  <NavDropdown.Item href="appointments">My Appointments</NavDropdown.Item>
                  <NavDropdown.Item href="home" onClick={() => logMeOut()}>Log Out</NavDropdown.Item>
                 
@@ -49,7 +49,7 @@ export const Header = () => {
                 <>
 
                 <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
-                <NavDropdown.Item href="appointments">Create Appointment</NavDropdown.Item>
+                <NavDropdown.Item href="createappointments">Create Appointment</NavDropdown.Item>
                 <NavDropdown.Item href="">My Appointments</NavDropdown.Item>
                 <NavDropdown.Item href="home" onClick={() => logMeOut()}>Log Out</NavDropdown.Item>
                 

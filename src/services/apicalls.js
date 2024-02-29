@@ -1,5 +1,6 @@
 import axios from "axios";
 const API_URL= 'http://localhost:3000/api/users'
+const API_URL2 = 'http://localhost:3000/api/appointments'
 
 export const bringAllArtists = async () => {
     const res = await axios.get("http://localhost:3000/api/artist") 
@@ -18,6 +19,19 @@ export const deleteUser = async (token, id) => {
     }
 };
 
+export const deleteAppointment = async (token, id) => {
+    try {
+        const res = await axios.delete(`${API_URL2}/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return res.data; 
+    } catch (error) {
+        throw new Error(error.response.data.message || "Error al eliminar la cita");
+    }
+};
+
 //acceder con autorización solo
 export const bringAllUsers = async () => {
     const token = localStorage.getItem("token");
@@ -27,6 +41,17 @@ export const bringAllUsers = async () => {
         }
     };
     const res = await axios.get("http://localhost:3000/api/users", config);
+    return res.data.results;
+};
+
+export const bringAllAppointments = async () => {
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+    const res = await axios.get("http://localhost:3000/api/appointments", config);
     return res.data.results;
 };
 
