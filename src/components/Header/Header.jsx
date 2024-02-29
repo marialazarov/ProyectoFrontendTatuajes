@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
    const decoded = JSON.parse(localStorage.getItem('decoded'))
-   console.log(decoded)
   const token = localStorage.getItem("token");
   const navigate = useNavigate()
 
@@ -40,8 +39,7 @@ export const Header = () => {
               ) : decoded.userRoles =='admin' ? (
                 <>
                 <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
-                <NavDropdown.Item href="">Admin</NavDropdown.Item>
-                <NavDropdown.Item href="">Users</NavDropdown.Item>
+                <NavDropdown.Item href="admin">Users</NavDropdown.Item>
                 <NavDropdown.Item href="">All the Appointments</NavDropdown.Item>
                  <NavDropdown.Item href="appointments">My Appointments</NavDropdown.Item>
                  <NavDropdown.Item href="home" onClick={() => logMeOut()}>Log Out</NavDropdown.Item>
