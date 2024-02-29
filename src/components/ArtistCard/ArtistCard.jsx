@@ -1,9 +1,10 @@
+import e from "cors"
 import "./ArtistCard.css"
 
 
 
 
-export const ArtistCard = ({id,img,name,portfolio}) =>{
+export const ArtistCard = ({id,img,name,portfolio,}) =>{
 
     return (
         <div className="cardContainer" key={id}>

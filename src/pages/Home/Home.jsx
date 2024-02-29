@@ -37,7 +37,8 @@ export const Home = () => {
             navigate('/profile')
 
             
-        });
+        })
+      
     };
 
     useEffect(() => {
@@ -53,11 +54,13 @@ export const Home = () => {
             <h1 className="welcome">WELCOME</h1>
             <div className="midiv">
                 <CustomInput
+                placeholder={'email'}
                     type={"email"}
                     name={"email"}
                     handler={inputHandler}
                 ></CustomInput>
                 <CustomInput
+                placeholder={'password'}
                     type={"password"}
                     name={"password"}
                     handler={inputHandler}

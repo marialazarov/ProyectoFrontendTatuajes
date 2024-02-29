@@ -31,6 +31,15 @@ export const Artist = () => {
         
     };
 
+    const viewArtistDetail =(id) => {
+        localStorage.setItem('userId' , id)
+        console.log('soy id en viewUserDetail')
+    }
+
+
+
+
+
     //para traer los artistas sin tener que pulsar un botón
     useEffect(() => {
         if (artists.length === 0) {
@@ -58,7 +67,7 @@ export const Artist = () => {
                 name={"name"}
                 handler={inputHandler}
             ></CustomInput>
-            <button onClick={buttonHandler}>BUSCAR</button>
+            <button onClick={viewArtistDetail}>VIEW</button>
             </div>
             <img className="logo" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>
 
@@ -66,24 +75,34 @@ export const Artist = () => {
 
             <div>
                 <div className="tatuadores">
-                    {artists.length > 0 && (
-                        <>
+                {artists.length > 0 ? (
+                <>
+                        
                             {artists.map((artist) => {
-                                return <ArtistCard
+                                return (
+                                    
+                                     <div  onClick={() => viewArtistDetail(artist.id)}>
+                                <ArtistCard
                                     id={artist.id}
                                     img={artist.img}
                                     name={artist.name}
                                     portfolio={artist.portfolio}
                                 >
                                 </ArtistCard>
-
+                              </div>
+                               
+                            );
                             })}
                         </>
-                    )
-                    }
-                </div>
+                    ) : null }
+                   
+                
+             
             </div>
-        </>
+            </div>
+      </>
     );
 };
+
+
 
