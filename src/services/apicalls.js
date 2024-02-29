@@ -30,6 +30,17 @@ export const bringAllUsers = async () => {
     return res.data.results;
 };
 
+
+
+export const createUsers = async (userData) => {
+    try {
+      const res = await axios.post('http://localhost:3000/auth/register',userData);
+      return res.data.user;
+    } catch (error) {
+      throw error;
+    }
+  };
+
 export const bringUserById = async(id)=>{
     const res = await axios.get(`${API_URL}/${id}`)
     return  res.data.user
