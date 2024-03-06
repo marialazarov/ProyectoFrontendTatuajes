@@ -43,11 +43,7 @@ export const Artist = () => {
     return (
         <>
         <div className="miDiv">
-            <CustomInput
-                type={"text"}
-                name={"name"}
-                handler={inputHandler}
-            ></CustomInput>
+           
         
             </div>
             <img className="logo" src="https://img.freepik.com/vector-gratis/ilustracion-vector-logo-estudio-tatuaje-vintage-equipos-monocromaticos-cruzados-profesionales_74855-11252.jpg"></img>

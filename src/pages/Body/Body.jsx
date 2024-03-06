@@ -8,7 +8,7 @@ import { Appointments } from "../Appointments/Appointments"
 import { AdminAppointments } from "../AdminAppointments/AdminAppointments"
 import { UserAppointments } from "../UserAppointments/UserAppointments"
 
-Appointments
+
 
 
 export const Body = () => {

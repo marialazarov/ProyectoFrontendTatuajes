@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { createUsers } from "../../services/apicalls"; // Importa la función para crear usuarios
 import { useNavigate } from "react-router-dom";
+import './Register.css'
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export const Register = () => {
 
   return (
     <>
-      <h1>Registro de Usuario</h1>
+      <h1 className="registrodeusuario">Registro de Usuario</h1>
       <div>
         {/* Ventana emergente de registro exitoso */}
         {registrationSuccess && (

@@ -1,12 +1,17 @@
 .profileDesign{
-    width: 10em;
-    height: 10em;
-    background-color: blue;
+    width: 50em;
+    height: 50em;
+    background-color: rgb(0, 0, 0);
 }
 
 h4{
-    color: black;
+    color: rgb(255, 252, 252);
 }
 .userData{
-color: black;
+color: rgb(254, 252, 252);
 }
+h1{
+color: aliceblue;}
+
+.newValue{
+color: rgb(50, 154, 245);}

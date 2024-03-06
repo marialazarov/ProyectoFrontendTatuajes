@@ -50,7 +50,7 @@ export const Header = () => {
 
                 <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
                 <NavDropdown.Item href="createappointments">Create Appointment</NavDropdown.Item>
-                <NavDropdown.Item href="myappointmments">My Appointments</NavDropdown.Item>
+                <NavDropdown.Item href="myappointments">My Appointments</NavDropdown.Item>
                 <NavDropdown.Item href="home" onClick={() => logMeOut()}>Log Out</NavDropdown.Item>
                 
                 

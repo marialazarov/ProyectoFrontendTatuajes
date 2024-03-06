@@ -66,9 +66,9 @@ export const Home = () => {
                     handler={inputHandler}
                 ></CustomInput>
 
-                <div className="apiCallButton" onClick={buttonHandler}>
+                <button className="apiCallButton" onClick={buttonHandler}>
                     <h4>LOGIN</h4> 
-                </div>
+                </button>
 
             </div>
         </>

@@ -32,7 +32,7 @@ export const Appointments = () => {
       await createAppointment(userData);
       console.log("Cita creada exitosamente");
       setRegistrationSuccess(true); // Establece el estado de éxito de registro en verdadero
-      // navigate("/profile"); // No necesitas redirigir aquí si muestras el popup
+    
     } catch (error) {
       console.error("Error al crear la cita:", error);
     }
