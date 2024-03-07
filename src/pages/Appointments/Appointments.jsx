@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { createAppointment } from "../../services/apicalls"; 
 import { useNavigate } from "react-router-dom";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
+import { useDispatch, useSelector } from "react-redux";
+import { userData1 } from "../userSlice";
 
 export const Appointments = () => {
   const navigate = useNavigate();
@@ -12,9 +14,13 @@ export const Appointments = () => {
     hour: ""
   });
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-
+  const dispatch = useDispatch();
+    const userRdxData = useSelector(userData1)
+    const token = userRdxData.token
+    const decoded = userRdxData.userData
+  
   useEffect(() => {
-    if (!userData) {
+    if (!decoded) {
       navigate('/register');
     }
   }, []);

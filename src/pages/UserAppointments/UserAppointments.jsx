@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { bringAppointmentById, updateAppointment } from "../../services/apicalls"; 
 import './UserAppointments.css'
+import { useDispatch, useSelector } from "react-redux";
+import { userData1 } from "../userSlice";
 
 export const UserAppointments = () => {
     const [userAppointments, setUserAppointments] = useState([]);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
     const [newDate, setNewDate] = useState('');
     const [newHour, setNewHour] = useState('');
+    const dispatch = useDispatch();
+    const userRdxData = useSelector(userData1)
+    const token = userRdxData.token
+    const decoded = userRdxData.userData
 
     useEffect(() => {
         const fetchUserAppointments = async () => {
             try {
-                const userId = JSON.parse(localStorage.getItem('decoded')).userId;
+                const userId = decoded.userId
                 if (!userId) {
                     console.error("No se encontró el ID del usuario en el localStorage");
                     return;

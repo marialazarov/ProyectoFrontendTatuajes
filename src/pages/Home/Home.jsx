@@ -9,6 +9,8 @@ import { Header
 } from "../../components/Header/Header";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login, userData1 } from "../userSlice";
 //VISTA login
 export const Home = () => {
     const [artists, setArtists] = useState([]);
@@ -16,6 +18,12 @@ export const Home = () => {
         email: "", 
         password: "",
     });
+
+    //instancia redux en modo escritura
+    const dispatch = useDispatch()
+
+    //instancia redux en modo lectura
+    const userRdxData = useSelector(userData1)
 
     const inputHandler = (event) => {
         setUserData((prevState) => ({
@@ -30,17 +38,23 @@ export const Home = () => {
     const buttonHandler = () => {
     
         userLogin(userData).then((token) => {
-            localStorage.setItem('token', token);
             const decodedtoken = jwtDecode(token)
-            localStorage.setItem('decoded', JSON.stringify(decodedtoken));
-    
+             const data = {
+                token: token,
+                userData: decodedtoken
+                }
+              
+           dispatch(login(data))
+            
             navigate('/profile')
 
             
         })
+        .catch((err) => console.error('ha ocurrido un error', err))
       
     };
 
+        
     useEffect(() => {
        
     }, [artists]);

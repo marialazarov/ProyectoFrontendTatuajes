@@ -2,12 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { bringAllUsers, deleteUser } from "../../services/apicalls";
 import './Admin.css'
+import { useDispatch, useSelector } from "react-redux";
+import { userData1 } from "../userSlice";
 
 export const Admin = () => {
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); // Estado para almacenar el término de búsqueda
-    const decoded = JSON.parse(localStorage.getItem("decoded"));
-    const token = localStorage.getItem("token");
+    const dispatch = useDispatch();
+    const userRdxData = useSelector(userData1)
+    const token = userRdxData.token
+    const decoded = userRdxData.userData
     const navigate = useNavigate();
 
     const deleteUserHandler = async (id) => {
@@ -33,6 +37,7 @@ export const Admin = () => {
             });
         }
     }, []);
+   
 
     // Función para filtrar los usuarios según el término de búsqueda
     const filteredUsers = users.filter((user) =>

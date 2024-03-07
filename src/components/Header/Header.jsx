@@ -5,17 +5,21 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, userData1 } from "../../pages/userSlice";
 
 export const Header = () => {
-   const decoded = JSON.parse(localStorage.getItem('decoded'))
-  const token = localStorage.getItem("token");
+  
   const navigate = useNavigate()
 
 
+  const dispatch = useDispatch();
+  const userRdxData = useSelector(userData1)
+  const token = userRdxData.token
+  const decoded = userRdxData.userData
 
   const logMeOut = () =>{
-    localStorage.setItem('token', '')
-    localStorage.setItem('decoded', JSON.stringify({}))
+    dispatch(logout())
     setTimeout(()=>{
         navigate('/home')
     },1000)
@@ -31,7 +35,7 @@ export const Header = () => {
             <Nav.Link href="home">Home</Nav.Link>
             <Nav.Link href="artist">Artists</Nav.Link>
             <NavDropdown title="My Account" id="collapsible-nav-dropdown">
-              {!token ? (
+              {!userRdxData.token ? (
                 <>
                   <NavDropdown.Item href="home">Login</NavDropdown.Item>
                   <NavDropdown.Item href="register">Register</NavDropdown.Item>

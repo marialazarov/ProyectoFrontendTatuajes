@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateProfile } from "../../services/apicalls";
 import './Profile.css';
+import { useDispatch, useSelector } from "react-redux";
+import { userData1 } from "../userSlice";
 
 export const Profile = () => {
     const navigate = useNavigate();
@@ -11,17 +13,20 @@ export const Profile = () => {
     const [newEmail, setNewEmail] = useState(userData.email);
     const [newPhone, setNewPhone] = useState(userData.phone);
     const [newUserName, setNewUserName] = useState(userData.username);
-    const token = localStorage.getItem('token');
+    const dispatch = useDispatch();
+    const userRdxData = useSelector(userData1)
+    const token = userRdxData.token
+    const decoded = userRdxData.userData
 
     useEffect(() => {
-        if (!userData.username) {
+        if (!decoded) {
             navigate('/register');
         }
     }, []);
 
     const handleUpdateProfile = async () => {
         try {
-            const updatedUserData = await updateProfile(token, userData.userId, {
+            const updatedUserData = await updateProfile(token, decoded.userId, {
                 username: newUserName,
                 name: newName,
                 email: newEmail,
@@ -29,10 +34,10 @@ export const Profile = () => {
                 
             });
            
-            localStorage.setItem('decoded', JSON.stringify(updatedUserData));
-            setUserData(updatedUserData);
+            
+            setUserData(decoded);
             setIsEditing(false);
-            console.log("Perfil actualizado correctamente:", updatedUserData);
+            console.log("Perfil actualizado correctamente:", decoded);
         } catch (error) {
             console.error("Error al actualizar el perfil:", error);
             // Aquí podrías mostrar un mensaje de error al usuario
@@ -46,17 +51,17 @@ export const Profile = () => {
     const handleCancelEdit = () => {
         setIsEditing(false);
         // Restaurar los valores originales del usuario al cancelar la edición
-        setNewName(userData.name);
-        setNewEmail(userData.email);
-        setNewPhone(userData.phone);
-        setNewUserName(userData.username);
+        setNewName(decoded.name);
+        setNewEmail(decoded.email);
+        setNewPhone(decoded.phone);
+        setNewUserName(decoded.username);
     };
 
     return (
         <div className="profileDesign">
-            <h1>Hello, {userData.username}</h1>
+            <h1>Hello, {decoded.username}</h1>
             <br />
-            <h4>This is your id number: {userData.userId}</h4>
+            <h4>This is your id number: {decoded.userId}</h4>
             <br />
             {isEditing ? (
                 <>
@@ -74,11 +79,11 @@ export const Profile = () => {
                 </>
             ) : (
                 <>
-                    <h4>Name: {userData.name}</h4>
+                    <h4>Name: {decoded.name}</h4>
                     <br />
-                    <h4>Email: {userData.email}</h4>
+                    <h4>Email: {decoded.email}</h4>
                     <br />
-                    <h4>Phone: {userData.phone}</h4>
+                    <h4>Phone: {decoded.phone}</h4>
                     <br />
                     <button onClick={handleEditProfile}>Edit Profile</button>
                 </>
