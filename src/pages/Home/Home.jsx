@@ -2,15 +2,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./Home.css";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
-import { bringAllArtists, userLogin } from "../../services/apicalls";
-import { ArtistCard } from "../../components/ArtistCard/ArtistCard";
-import { Header
-
-} from "../../components/Header/Header";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, userData1 } from "../userSlice";
+import { userLogin } from "../../services/apicalls";
 //VISTA login
 export const Home = () => {
     const [artists, setArtists] = useState([]);

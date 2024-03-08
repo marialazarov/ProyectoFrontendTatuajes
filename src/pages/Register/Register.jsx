@@ -2,7 +2,14 @@ import { useState } from "react";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { createUsers } from "../../services/apicalls"; // Importa la función para crear usuarios
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
 import './Register.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -14,7 +21,18 @@ export const Register = () => {
     password: "",
     phone: ""
   });
-  const [registrationSuccess, setRegistrationSuccess] = useState(false); // Estado para el registro exitoso
+
+  const [validated, setValidated] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
 
   // Maneja los cambios en los campos del formulario
   const inputHandler = (event) => {
@@ -33,7 +51,7 @@ export const Register = () => {
       setRegistrationSuccess(true); // Establece el estado de registro exitoso en verdadero
       setTimeout(() => {
         navigate("/"); // Redirige a la página de inicio después del registro exitoso
-      }, 2000); // Redirige después de 2 segundos (2000 ms)
+      }, 5000); // Redirige después de 5 segundos (2000 ms)
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
     }
@@ -41,8 +59,9 @@ export const Register = () => {
 
   return (
     <>
-      <h1 className="registrodeusuario">Registro de Usuario</h1>
-      <div>
+      <h1 className="tituloregistro">Registro de Usuario</h1>
+      
+      <div className="registro">
         {/* Ventana emergente de registro exitoso */}
         {registrationSuccess && (
           <div className="registration-success-popup">
@@ -50,50 +69,91 @@ export const Register = () => {
           </div>
         )}
         {/* Campos del formulario */}
+
+
+
+
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Row className="mb-3">
+      <Form.Group as={Col} md="4" controlId="validationCustom01">
         <CustomInput
+          type="text"
+          text = "name"
           placeholder="Nombre"
-          type="text"
-          name="name"
-          value={userData.name}
-          handler={inputHandler}
+          value = {userData.name}
         />
+        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group as={Col} md="3" controlId="validationCustom02">
         <CustomInput
-          placeholder="Apellido"
-          type="text"
-          name="surname"
-          value={userData.surname}
-          handler={inputHandler}
-        />
+        
+        placeholder="Apellido"
+        type="text"
+        name="name"
+        value={userData.surname}
+        handler={inputHandler}
+      />
+        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group className="username d-flex justify-content-center" as={Col}  controlId="validationCustomUsername">
+        <InputGroup hasValidation>
+          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+          <CustomInput
+        placeholder="Nombre de Usuario"
+        type="text"
+        name="username"
+        value={userData.username}
+        handler={inputHandler}
+      />
+          <Form.Control.Feedback type="invalid">
+            Please choose a username.
+          </Form.Control.Feedback>
+        </InputGroup>
+      </Form.Group>
+    </Row>
+    <Row className="mb-3">
+      <Form.Group as={Col} md="6" controlId="validationCustom03">
+      <CustomInput
+        placeholder="Correo Electrónico"
+        type="email"
+        name="email"
+        value={userData.email}
+        handler={inputHandler}
+      />
+   
+      </Form.Group>
+      <Form.Group as={Col} md="3" controlId="validationCustom04">
         <CustomInput
-          placeholder="Nombre de Usuario"
-          type="text"
-          name="username"
-          value={userData.username}
-          handler={inputHandler}
-        />
+        placeholder="Contraseña"
+        type="password"
+        name="password"
+        value={userData.password}
+        handler={inputHandler}
+      />
+        <Form.Control.Feedback type="invalid">
+          Please provide a valid password.
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group as={Col} md="3" controlId="validationCustom05">
         <CustomInput
-          placeholder="Correo Electrónico"
-          type="email"
-          name="email"
-          value={userData.email}
-          handler={inputHandler}
-        />
-        <CustomInput
-          placeholder="Contraseña"
-          type="password"
-          name="password"
-          value={userData.password}
-          handler={inputHandler}
-        />
-        <CustomInput
-          placeholder="Teléfono"
-          type="text"
-          name="phone"
-          value={userData.phone}
-          handler={inputHandler}
-        />
-        <button onClick={registerUserHandler}>Registrarse</button>
-      </div>
-    </>
-  );
-};
+        placeholder="Teléfono"
+        type="text"
+        name="phone"
+        value={userData.phone}
+        handler={inputHandler}
+      />
+        <Form.Control.Feedback type="invalid">
+          Please provide a valid phone
+        </Form.Control.Feedback>
+      </Form.Group>
+    </Row>
+    <Form.Group className="mb-3">
+    </Form.Group>
+    <Button type="submit" onClick={registerUserHandler}>Register</Button>
+  </Form>
+  </div>
+  </>
+);
+}
+
+export default Register;
