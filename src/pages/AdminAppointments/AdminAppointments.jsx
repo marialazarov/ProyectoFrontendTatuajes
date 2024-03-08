@@ -31,7 +31,7 @@ export const AdminAppointments = () => {
         setSelectedAppointment(appointment);
     };
 
-    const updateAppointmentHandler = async () => {
+    const updateAppointmentHandler = async (token) => {
         try {
             await updateAppointment(token, selectedAppointment.id, selectedAppointment);
             bringAllAppointments().then((res) => {

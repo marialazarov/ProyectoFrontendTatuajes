@@ -44,7 +44,7 @@ export const bringAllUsers = async (token) => {
     return res.data.results;
 };
 
-export const bringAllAppointments = async () => {
+export const bringAllAppointments = async (token) => {
  
     const config = {
         headers: {
