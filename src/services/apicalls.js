@@ -46,7 +46,7 @@ export const bringAllUsers = async () => {
 };
 
 export const bringAllAppointments = async () => {
-    const token = localStorage.getItem("token");
+ 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
