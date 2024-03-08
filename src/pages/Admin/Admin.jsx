@@ -19,7 +19,7 @@ export const Admin = () => {
         if (confirmDelete) {
             try {
                 await deleteUser(token, id);
-                bringAllUsers().then((res) => {
+                bringAllUsers(token).then((res) => {
                     setUsers(res);
                 });
             } catch (error) {

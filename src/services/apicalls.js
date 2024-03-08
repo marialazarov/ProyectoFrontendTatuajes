@@ -82,7 +82,7 @@ export const updateAppointment = async (token, id, userData) => {
 
 export const updateProfile = async (token, id, userData) => {
     try {
-        const res = await axios.patch(`${API_URL2}/${id}`, userData, {
+        const res = await axios.patch(`${API_URL}/${id}`, userData, {
             headers: {
                 Authorization: "Bearer " + token
             },

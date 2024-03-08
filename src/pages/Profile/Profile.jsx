@@ -3,20 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { updateProfile } from "../../services/apicalls";
 import './Profile.css';
 import { useDispatch, useSelector } from "react-redux";
-import { userData1 } from "../userSlice";
+import { userData1, updateUserData } from "../userSlice";
 
 export const Profile = () => {
     const navigate = useNavigate();
-    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('decoded')) || {});
-    const [isEditing, setIsEditing] = useState(false);
-    const [newName, setNewName] = useState(userData.name );
-    const [newEmail, setNewEmail] = useState(userData.email);
-    const [newPhone, setNewPhone] = useState(userData.phone);
-    const [newUserName, setNewUserName] = useState(userData.username);
     const dispatch = useDispatch();
-    const userRdxData = useSelector(userData1)
-    const token = userRdxData.token
-    const decoded = userRdxData.userData
+    const userRdxData = useSelector(userData1);
+    const token = userRdxData.token;
+    const decoded = userRdxData.userData;
+    const myid = userRdxData.userData.userId;
+    const [isEditing, setIsEditing] = useState(false);
+    const [newName, setNewName] = useState(decoded.name);
+    const [newEmail, setNewEmail] = useState(decoded.email);
+    const [newPhone, setNewPhone] = useState(decoded.phone);
+    const [newUserName, setNewUserName] = useState(decoded.username);
 
     useEffect(() => {
         if (!decoded) {
@@ -26,21 +26,19 @@ export const Profile = () => {
 
     const handleUpdateProfile = async () => {
         try {
-            const updatedUserData = await updateProfile(token, decoded.userId, {
+            const updatedUserData = await updateProfile(token, myid, {
                 username: newUserName,
                 name: newName,
                 email: newEmail,
                 phone: newPhone
-                
             });
-           
             
-            setUserData(decoded);
+            dispatch(updateUserData(updatedUserData));
             setIsEditing(false);
-            console.log("Perfil actualizado correctamente:", decoded);
+            console.log("Perfil actualizado correctamente:", updatedUserData);
         } catch (error) {
             console.error("Error al actualizar el perfil:", error);
-            // Aquí podrías mostrar un mensaje de error al usuario
+           
         }
     };
 
@@ -61,7 +59,7 @@ export const Profile = () => {
         <div className="profileDesign">
             <h1>Hello, {decoded.username}</h1>
             <br />
-            <h4>This is your id number: {decoded.userId}</h4>
+            <h4>This is your id number: {myid}</h4>
             <br />
             {isEditing ? (
                 <>
