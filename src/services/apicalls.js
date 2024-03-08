@@ -11,7 +11,7 @@ export const deleteUser = async (token, id) => {
     try {
         const res = await axios.delete(`${API_URL}/${id}`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: "Bearer " + token,
             },
         });
         return res.data; 
@@ -34,11 +34,10 @@ export const deleteAppointment = async (token, id) => {
 };
 
 //acceder con autorización solo
-export const bringAllUsers = async () => {
-    const token = localStorage.getItem("token");
+export const bringAllUsers = async (token) => {
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: "Bearer " + token
         }
     };
     const res = await axios.get("http://localhost:3000/api/users", config);
@@ -49,7 +48,7 @@ export const bringAllAppointments = async () => {
  
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: "Bearer " + token
         }
     };
     const res = await axios.get("http://localhost:3000/api/appointments", config);
@@ -71,7 +70,7 @@ export const updateAppointment = async (token, id, userData) => {
     try {
         const res = await axios.patch(`${API_URL2}/${id}`, userData, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: "Bearer " + token
             },
         });
         return res.data; 
@@ -85,7 +84,7 @@ export const updateProfile = async (token, id, userData) => {
     try {
         const res = await axios.patch(`${API_URL2}/${id}`, userData, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: "Bearer " + token
             },
         });
         return res.data; 

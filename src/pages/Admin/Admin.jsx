@@ -32,7 +32,7 @@ export const Admin = () => {
         if (decoded.userRoles === "client") {
             navigate("/");
         } else {
-            bringAllUsers().then((res) => {
+            bringAllUsers(token).then((res) => {
                 setUsers(res);
             });
         }
