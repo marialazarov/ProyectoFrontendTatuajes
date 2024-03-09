@@ -58,7 +58,7 @@ export const Artist = () => {
                             {artists.map((artist) => {
                                 return (
                                     
-                                     <div  onClick={() => viewArtistDetail(artist.id)}>
+                                     <div className="artist-card" onClick={() => viewArtistDetail(artist.id)}>
                                 <ArtistCard
                                     id={artist.id}
                                     img={artist.img}
