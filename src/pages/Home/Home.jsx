@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, userData1 } from "../userSlice";
 import { userLogin } from "../../services/apicalls";
+import CustomBotton from "../../components/CustomBotton/CustomBotton";
 //VISTA login
 export const Home = () => {
     const [artists, setArtists] = useState([]);
@@ -76,9 +77,10 @@ export const Home = () => {
                     handler={inputHandler}
                 ></CustomInput>
 
-                <button className="apiCallButton" onClick={buttonHandler}>
-                    <h4>LOGIN</h4> 
-                </button>
+               <CustomBotton
+                onClick={buttonHandler}> </CustomBotton>
+                 
+           
 
             </div>
         </>
