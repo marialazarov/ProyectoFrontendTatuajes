@@ -74,8 +74,8 @@ export const Register = () => {
 
 
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-    <Row className="mb-3">
-      <Form.Group as={Col} md="4" controlId="validationCustom01">
+    <Row className="mb-2">
+      <Form.Group as={Col} md="12" controlId="validationCustom01">
         <CustomInput
           type="text"
           text = "name"
@@ -84,7 +84,7 @@ export const Register = () => {
         />
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
-      <Form.Group as={Col} md="3" controlId="validationCustom02">
+      <Form.Group as={Col} md="12" controlId="validationCustom02">
         <CustomInput
         
         placeholder="Apellido"
@@ -95,9 +95,8 @@ export const Register = () => {
       />
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
-      <Form.Group className="username d-flex justify-content-center" as={Col}  controlId="validationCustomUsername">
-        <InputGroup hasValidation>
-          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+      <Form.Group as={Col} md="12" >
+         
           <CustomInput
         placeholder="Nombre de Usuario"
         type="text"
@@ -108,11 +107,11 @@ export const Register = () => {
           <Form.Control.Feedback type="invalid">
             Please choose a username.
           </Form.Control.Feedback>
-        </InputGroup>
+      
       </Form.Group>
     </Row>
     <Row className="mb-3">
-      <Form.Group as={Col} md="6" controlId="validationCustom03">
+      <Form.Group as={Col} md="12" controlId="validationCustom03">
       <CustomInput
         placeholder="Correo Electrónico"
         type="email"
@@ -122,7 +121,7 @@ export const Register = () => {
       />
    
       </Form.Group>
-      <Form.Group as={Col} md="3" controlId="validationCustom04">
+      <Form.Group as={Col} md="12" controlId="validationCustom04">
         <CustomInput
         placeholder="Contraseña"
         type="password"
@@ -134,7 +133,7 @@ export const Register = () => {
           Please provide a valid password.
         </Form.Control.Feedback>
       </Form.Group>
-      <Form.Group as={Col} md="3" controlId="validationCustom05">
+      <Form.Group as={Col} md="12" controlId="validationCustom05">
         <CustomInput
         placeholder="Teléfono"
         type="text"
