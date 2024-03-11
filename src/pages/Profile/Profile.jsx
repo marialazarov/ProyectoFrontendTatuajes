@@ -26,7 +26,7 @@ export const Profile = () => {
 
     const handleUpdateProfile = async () => {
         try {
-            const updatedUserData = await updateProfile(token, myid, {
+            const updatedUserData = await updateProfile(token, myid,{
                 username: newUserName,
                 name: newName,
                 email: newEmail,
