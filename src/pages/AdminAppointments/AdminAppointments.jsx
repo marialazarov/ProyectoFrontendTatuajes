@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { bringAllAppointments, deleteAppointment, updateAppointment } from "../../services/apicalls";
 import './AdminAppointments.css'
+import { useSelector } from "react-redux";
+import { userData1 } from "../userSlice";
 
 export const AdminAppointments = () => {
     const [appointments, setAppointments] = useState([]);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
     const [inputValue, setInputValue] = useState('')
-    const decoded = JSON.parse(localStorage.getItem("decoded"));
-    const token = localStorage.getItem("token");
+    const userRdxData = useSelector(userData1)
+    const token = userRdxData.token
+    const decoded = userRdxData.userData
+    
+
 
     const inputHandler = (e) => {
         setInputValue(e.target.value)
