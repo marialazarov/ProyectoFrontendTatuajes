@@ -72,14 +72,14 @@ export const Appointments = () => {
         />
         <CustomInput
           placeholder="Fecha"
-          type="text"
+          type="date"
           name="date"
           value={userData.date}
           handler={inputHandler}
         />
         <CustomInput
           placeholder="Hora"
-          type="text"
+          type="time"
           name="hour"
           value={userData.hour}
           handler={inputHandler}

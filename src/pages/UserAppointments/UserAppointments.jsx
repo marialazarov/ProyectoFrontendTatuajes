@@ -76,8 +76,8 @@ export const UserAppointments = () => {
             {selectedAppointment && (
                 <div className="modifyForm">
                     <h3>Modificar Cita</h3>
-                    <input placeholder="Date" type="text" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
-                    <input placeholder="Hour" type="text" value={newHour} onChange={(e) => setNewHour(e.target.value)} />
+                    <input placeholder="Date" type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
+                    <input placeholder="Hour" type="time" value={newHour} onChange={(e) => setNewHour(e.target.value)} />
                     <button onClick={updateAppointmentHandler}>Guardar Cambios</button>
                 </div>
             )}
